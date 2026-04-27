@@ -8,6 +8,7 @@ import {
 	getStoryblokApi,
 	storyblokEditable,
 } from './lib/storyblock';
+import { getStorySlugFromUtm } from './lib/utmStorySlug';
 
 function normalizeSlug(pathname) {
 	const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
@@ -34,16 +35,21 @@ function getStoryVersion(search) {
 	return 'published';
 }
 
-function getSlugCandidates(pathname) {
+function getSlugCandidates(pathname, search) {
 	const routeSlug = normalizeSlug(pathname);
 	const homeSlug = import.meta.env.VITE_STORYBLOK_HOME_SLUG || 'test-page';
 	const fallbackSlug = import.meta.env.VITE_STORYBLOK_FALLBACK_SLUG;
 
-	if (!routeSlug) {
-		return [...new Set([homeSlug, fallbackSlug].filter(Boolean))];
-	}
+	const utmSlug = getStorySlugFromUtm(search);
 
-	return [...new Set([routeSlug, fallbackSlug, homeSlug].filter(Boolean))];
+	const baseList = !routeSlug
+		? [homeSlug, fallbackSlug].filter(Boolean)
+		: [routeSlug, fallbackSlug, homeSlug].filter(Boolean);
+
+	const withUtm =
+		utmSlug != null ? [utmSlug, ...baseList] : baseList;
+
+	return [...new Set(withUtm)];
 }
 
 function isLocalBlocksMode(search) {
@@ -63,7 +69,10 @@ function StoryblokPage({ pathname, search }) {
 	const [story, setStory] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const slugCandidates = useMemo(() => getSlugCandidates(pathname), [pathname]);
+	const slugCandidates = useMemo(
+		() => getSlugCandidates(pathname, search),
+		[pathname, search],
+	);
 
 	useEffect(() => {
 		let cancelled = false;
