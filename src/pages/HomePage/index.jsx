@@ -1,4 +1,3 @@
-import Component1 from '@/components/Component1';
 import { StoryblokComponent, storyblokEditable } from '@storyblok/react';
 import styles from './index.module.scss';
 
@@ -11,9 +10,12 @@ function HomePage({ blok }) {
 			<div className={styles['wrapper']}>
 				{body.length > 0
 					? body.map((nestedBlok) => (
-							<StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+							<StoryblokComponent
+								blok={nestedBlok}
+								key={nestedBlok._uid || nestedBlok.id}
+							/>
 						))
-					: <Component1 />}
+					: <div>Add a block to the page body in Storyblok.</div>}
 			</div>
 		</div>
 	);
