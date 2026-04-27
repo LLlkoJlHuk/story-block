@@ -31,8 +31,13 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          printf '%s' "${{ secrets.BEGET_SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_ed25519
+          if [ -n "${{ secrets.BEGET_SSH_KEY_B64 }}" ]; then
+            echo "${{ secrets.BEGET_SSH_KEY_B64 }}" | base64 -d | tr -d '\r' > ~/.ssh/id_ed25519
+          else
+            printf '%s' "${{ secrets.BEGET_SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_ed25519
+          fi
           chmod 600 ~/.ssh/id_ed25519
+          ssh-keygen -l -f ~/.ssh/id_ed25519 >/dev/null
           ssh-keyscan -p "${{ secrets.BEGET_SSH_PORT }}" "${{ secrets.BEGET_SSH_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Verify SSH auth
