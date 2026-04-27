@@ -1,7 +1,21 @@
+.component-wrapper {
+	padding: 20px 0;
+
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+
+	background: url('@/assets/images/BlockPreview/wrapper_bg.png') center right no-repeat;
+	background-size: cover;
+	background-color: #F5F5F5;
+}
+
 .BlockPreview {
 	position: relative;
 
 	width: 100%;
+	max-width: 1132px;
 	height: 100%;
 	min-height: 494px;
 
@@ -13,7 +27,7 @@
 	align-items: start;
 	gap: 60px;
 
-	background: linear-gradient(90deg, #0095FF 33.12%, rgba(0, 149, 255, 0.30) 100%), url('@/assets/images/component1/bg.png') lightgray 50% / cover no-repeat;
+	background: linear-gradient(90deg, #0095FF 33.12%, rgba(0, 149, 255, 0.30) 100%), url('@/assets/images/BlockPreview/bg.png') lightgray 50% / cover no-repeat;
 
 	.title {
 		width: 100%;
@@ -27,7 +41,7 @@
 	}
 
 	.button {
-		cursor: pointer;
+		text-decoration: none;
 		padding: 10px 20px;
 
 		color: #FFF;
@@ -49,6 +63,6 @@
 		width: 276px;
 		height: 462px;
 
-		background: url('@/assets/images/component1/woman.png');
+		background: url('@/assets/images/BlockPreview/woman.png');
 	}
 }

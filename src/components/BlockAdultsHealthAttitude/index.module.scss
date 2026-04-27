@@ -1,0 +1,144 @@
+.component-wrapper {
+	padding: 60px;
+
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+}
+
+.BlockAdultsHealthAttitude {
+	position: relative;
+
+	width: 100%;
+	max-width: 1132px;
+	height: 100%;
+
+	border-radius: 2px;
+	box-shadow: 0 10px 30px 0 rgba(131, 131, 131, 0.10);
+
+	.content {
+		position: relative;
+		padding: 20px;
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	.title {
+		color: #303030;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 130%;
+	}
+
+	.arrow {
+		cursor: pointer;
+
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		width: 38px;
+		height: 38px;
+
+		border: none;
+		padding: 0;
+		font: inherit;
+
+		background: url('@/assets/images/BlockAdultsHealthAttitude/arrow.png') center center no-repeat;
+		background-size: cover;
+
+		transform-origin: center;
+		transition: transform 0.35s ease;
+
+		&--collapsed {
+			transform: rotate(180deg);
+		}
+	}
+
+	.flex-collapse {
+		display: grid;
+		transition: grid-template-rows 0.35s ease;
+
+		&--open {
+			grid-template-rows: 1fr;
+		}
+
+		&--closed {
+			grid-template-rows: 0fr;
+		}
+	}
+
+	.flex-collapse-inner {
+		overflow: hidden;
+		min-height: 0;
+	}
+
+	.flex-wrapper {
+		margin-top: 30px;
+
+		display: flex;
+		justify-content: start;
+		align-items: start;
+		gap: 40px;
+	}
+
+	.flex-wrapper--item {
+		display: flex;
+		justify-content: start;
+		align-items: start;
+		gap: 20px;
+
+		&--image {
+			width: 40px;
+			height: 40px;
+		}
+
+		&--text {
+			width: 100%;
+			max-width: 456px;
+
+			color: #303030;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 130%;
+		}
+
+		&:nth-child(1) {
+			.flex-wrapper--item--image {
+				background: url('@/assets/images/BlockAdultsHealthAttitude/icon--1.png') center center no-repeat;
+				background-size: contain;
+			}
+		}
+
+		&:nth-child(2) {
+			.flex-wrapper--item--image {
+				background: url('@/assets/images/BlockAdultsHealthAttitude/icon--2.png') center center no-repeat;
+				background-size: contain;
+			}
+		}
+	}
+
+	.description {
+		padding: 20px;
+
+		display: flex;
+		justify-content: start;
+		align-items: center;
+		gap: 20px;
+
+		background: linear-gradient(90deg, rgba(201, 216, 255, 0.70) 0%, rgba(201, 216, 255, 0.00) 100%), linear-gradient(90deg, #63ABFD 0%, #0095FF 29.15%, #D9E5FF 100%), #0095FF;
+
+		&--image {
+			width: 60px;
+			height: 60px;
+			min-width: 60px;
+
+			background: url('@/assets/images/BlockAdultsHealthAttitude/icon--3.png') center center no-repeat;
+			background-size: contain;
+			filter: drop-shadow(0 10px 30px #FFF9D9);
+		}
+	}
+}

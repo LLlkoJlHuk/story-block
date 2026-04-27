@@ -1,0 +1,129 @@
+.component-wrapper {
+	padding: 50px 0 100px;
+
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+
+	background: url('@/assets/images/BlockMoreNews/wrapper_bg.png') center center no-repeat;
+	background-size: cover;
+	background-color: #F5F5F5;
+}
+
+.BlockMoreNews {
+	position: relative;
+	width: 100%;
+	max-width: 1132px;
+	height: 100%;
+
+	.title {
+		color: #303030;
+		font-size: 50px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 110%;
+	}
+
+	.news {
+		margin-top: 40px;
+
+		display: flex;
+		justify-content: center;
+
+		&--item {
+			cursor: pointer;
+			text-decoration: none;
+			position: relative;
+			padding: 20px;
+
+			width: 100%;
+			max-width: 283px;
+			height: 247px;
+
+			border-radius: 2px;
+			background: #FFF;
+			border: 1px solid #F5F5F5;
+
+			&--module {
+				color: #303030;
+				font-size: 12px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 130%;
+
+				span {
+					font-size: 40px;
+					line-height: 90%;
+				}
+			}
+
+			&--title {
+				margin-top: 20px;
+
+				width: 100%;
+				max-width: 243px;
+
+				color: #303030;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 130%;
+			}
+
+			&--soon-wrapper {
+				position: absolute;
+				padding: 0 20px;
+				left: 0;
+				bottom: 20px;
+
+				width: 100%;
+
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				&--text {
+					color: #303030;
+					font-size: 12px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 130%;
+				}
+
+				&--image {
+					color: #0095FF;
+				}
+			}
+
+			&--soon {
+				cursor: default;
+				pointer-events: none;
+			}
+
+			&:nth-child(1) {
+				border-right: 1px solid var(--grey, #F5F5F5);
+				background: url('@/assets/images/BlockMoreNews/news-1-bg.png') center center no-repeat;
+				background-size: cover;
+
+				.news--item--title {
+					color: #FFF;
+				}
+
+				.news--item--module {
+					color: #FFF;
+				}
+
+				.news--item--soon-wrapper {
+					&--text {
+						color: #FFF;
+					}
+
+					&--image {
+						color: #FFF;
+					}
+				}
+			}
+		}
+	}
+}

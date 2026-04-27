@@ -1,8 +1,13 @@
 import { useStoryblokBridge } from '@storyblok/react';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { StoryblokComponent, getStoryblokApi, storyblokEditable } from './lib/storyblock';
+import LocalBlocksPage from './dev/LocalBlocksPage';
 import './lib/storyblock';
+import {
+	StoryblokComponent,
+	getStoryblokApi,
+	storyblokEditable,
+} from './lib/storyblock';
 
 function normalizeSlug(pathname) {
 	const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
@@ -41,8 +46,19 @@ function getSlugCandidates(pathname) {
 	return [...new Set([routeSlug, fallbackSlug, homeSlug].filter(Boolean))];
 }
 
-function App() {
-	const { pathname, search } = useLocation();
+function isLocalBlocksMode(search) {
+	if (!import.meta.env.DEV) {
+		return false;
+	}
+
+	const queryParams = new URLSearchParams(search);
+	return (
+		import.meta.env.VITE_LOCAL_BLOCKS_MODE === 'true' ||
+		queryParams.get('local') === '1'
+	);
+}
+
+function StoryblokPage({ pathname, search }) {
 	const version = getStoryVersion(search);
 	const [story, setStory] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
@@ -59,9 +75,8 @@ function App() {
 			const storyblokApi = getStoryblokApi();
 			let loadedStory = null;
 			let lastError = null;
-			const versionCandidates = version === 'published'
-				? ['published', 'draft']
-				: [version];
+			const versionCandidates =
+				version === 'published' ? ['published', 'draft'] : [version];
 
 			for (const slugCandidate of slugCandidates) {
 				for (const versionCandidate of versionCandidates) {
@@ -103,7 +118,7 @@ function App() {
 
 	useStoryblokBridge(
 		story?.id,
-		(liveStory) => {
+		liveStory => {
 			setStory(liveStory);
 		},
 		{ resolveRelations: [] },
@@ -114,7 +129,8 @@ function App() {
 	if (error) {
 		return (
 			<div>
-				Story not found for current route. Checked slugs: {slugCandidates.join(', ')}
+				Story not found for current route. Checked slugs:{' '}
+				{slugCandidates.join(', ')}
 			</div>
 		);
 	}
@@ -126,6 +142,16 @@ function App() {
 			<StoryblokComponent blok={story.content} />
 		</div>
 	);
+}
+
+function App() {
+	const { pathname, search } = useLocation();
+
+	if (isLocalBlocksMode(search)) {
+		return <LocalBlocksPage />;
+	}
+
+	return <StoryblokPage pathname={pathname} search={search} />;
 }
 
 export default App;

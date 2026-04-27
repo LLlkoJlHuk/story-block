@@ -1,0 +1,214 @@
+.component-wrapper {
+	padding: 60px 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+
+	background: url('@/assets/images/BlockInfantsGerdOverview/wrapper_bg.png') center center no-repeat;
+	background-size: cover;
+	background-color: #F5F5F5;
+}
+
+.BlockInfantsGerdOverview {
+	position: relative;
+
+	width: 100%;
+	max-width: 1132px;
+	height: 100%;
+
+	.title {
+		color: #303030;
+		font-size: 50px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 110%;
+	}
+
+	.content {
+		margin-top: 40px;
+
+		display: flex;
+		justify-content: start;
+		align-items: center;
+		gap: 40px;
+
+		&--image {
+			width: 537px;
+			height: 350px;
+
+			background: url('@/assets/images/BlockInfantsGerdOverview/baby.png') center center no-repeat;
+		}
+
+		&--text {
+			width: 100%;
+			max-width: 537px;
+
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			&--title {
+				color: #303030;
+				font-size: 24px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: 130%;
+			}
+
+			&--flex-wrapper {
+				display: flex;
+				justify-content: start;
+				align-items: center;
+				gap: 20px;
+			}
+
+			&--flex-wrapper--item {
+				display: flex;
+				justify-content: start;
+				align-items: center;
+				gap: 20px;
+			}
+
+			&--flex-wrapper--item--title {
+				padding: 6px 12px;
+
+				color: #303030;
+				font-size: 22px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: 130%;
+
+				border-radius: 2px;
+				background: linear-gradient(90deg, rgba(201, 216, 255, 0.70) 0%, rgba(201, 216, 255, 0.00) 100%), #0095FF;
+				box-shadow: 0 10px 30px 0 rgba(131, 131, 131, 0.10);
+			}
+
+			&--flex-wrapper--item--text {
+				color: #303030;
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 130%;
+			}
+
+			&--rich-text {
+				margin-top: 10px;
+
+				color: #303030;
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 130%;
+			}
+
+			&--link {
+				text-decoration: none;
+				margin-top: 10px;
+				padding: 10px 20px;
+
+				width: 100%;
+				max-width: fit-content;
+
+				color: #FFF;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: 130%;
+
+				border-radius: 2px;
+				background: #303030;
+				box-shadow: 0 10px 30px 0 rgba(131, 131, 131, 0.10);
+			}
+		}
+	}
+
+	.subtitle {
+		margin-top: 60px;
+
+		width: 100%;
+		max-width: 844px;
+
+		color: #303030;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 130%;
+	}
+
+	.achievements {
+		margin-top: 30px;
+
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+	}
+
+	.achievement {
+		padding: 20px;
+
+		width: 100%;
+		max-width: 268px;
+		height: 173px;
+
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		border-radius: 2px;
+		background: #FFF;
+		box-shadow: 0 10px 30px 0 rgba(131, 131, 131, 0.10);
+
+		&:nth-child(1) {
+			.achievement--image {
+				background: url('@/assets/images/BlockInfantsGerdOverview/achievement-1.png') center center no-repeat;
+			}
+		}
+
+		&:nth-child(2) {
+			.achievement--image {
+				background: url('@/assets/images/BlockInfantsGerdOverview/achievement-2.png') center center no-repeat;
+			}
+		}
+
+		&:nth-child(3) {
+			.achievement--image {
+				background: url('@/assets/images/BlockInfantsGerdOverview/achievement-3.png') center center no-repeat;
+			}
+		}
+
+		&:nth-child(4) {
+			.achievement--image {
+				background: url('@/assets/images/BlockInfantsGerdOverview/achievement-4.png') center center no-repeat;
+			}
+		}
+
+		&--image-container {
+			position: relative;
+			display: flex;
+			justify-content: start;
+			align-items: center;
+			gap: 20px;
+		}
+
+		&--image {
+			width: 60px;
+			height: 60px;
+		}
+
+		&--line {
+			width: 148px;
+			height: 2px;
+
+			background: #F5F5F5;
+		}
+
+		&--title {
+			color: #303030;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 130%;
+		}
+	}
+}

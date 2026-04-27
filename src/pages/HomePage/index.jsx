@@ -7,16 +7,16 @@ function HomePage({ blok }) {
 
 	return (
 		<div className={styles['home-page']} {...editableProps}>
-			<div className={styles['wrapper']}>
-				{body.length > 0
-					? body.map((nestedBlok) => (
-							<StoryblokComponent
-								blok={nestedBlok}
-								key={nestedBlok._uid || nestedBlok.id}
-							/>
-						))
-					: <div>Add a block to the page body in Storyblok.</div>}
-			</div>
+			{body.length > 0 ? (
+				body.map(nestedBlok => (
+					<StoryblokComponent
+						blok={nestedBlok}
+						key={nestedBlok._uid || nestedBlok.id}
+					/>
+				))
+			) : (
+				<div>Add a block to the page body in Storyblok.</div>
+			)}
 		</div>
 	);
 }
