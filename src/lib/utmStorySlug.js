@@ -7,7 +7,7 @@
  */
 export const UTM_CAMPAIGN_TO_STORY_SLUG = {
 	therapists: 'therapists',
-	infants: 'pediatricians',
+	pediatricians: 'pediatricians',
 };
 
 function parseSlugMapFromEnv() {

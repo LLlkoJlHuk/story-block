@@ -37,7 +37,7 @@ function getStoryVersion(search) {
 
 function getSlugCandidates(pathname, search) {
 	const routeSlug = normalizeSlug(pathname);
-	const homeSlug = import.meta.env.VITE_STORYBLOK_HOME_SLUG || 'test-page';
+	const homeSlug = import.meta.env.VITE_STORYBLOK_HOME_SLUG || 'therapists';
 	const fallbackSlug = import.meta.env.VITE_STORYBLOK_FALLBACK_SLUG;
 
 	const utmSlug = getStorySlugFromUtm(search);
@@ -46,8 +46,7 @@ function getSlugCandidates(pathname, search) {
 		? [homeSlug, fallbackSlug].filter(Boolean)
 		: [routeSlug, fallbackSlug, homeSlug].filter(Boolean);
 
-	const withUtm =
-		utmSlug != null ? [utmSlug, ...baseList] : baseList;
+	const withUtm = utmSlug != null ? [utmSlug, ...baseList] : baseList;
 
 	return [...new Set(withUtm)];
 }
