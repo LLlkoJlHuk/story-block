@@ -7,6 +7,9 @@ import {
 	useStoryblok,
 } from '@storyblok/react';
 import Component1 from '../components/Component1';
+import Feature from '../components/Feature';
+import Grid from '../components/Grid';
+import Teaser from '../components/Teaser';
 import HomePage from '../pages/HomePage';
 
 const accessToken = import.meta.env.VITE_STORYBLOK_ACCESS_TOKEN;
@@ -22,9 +25,13 @@ storyblokInit({
 	accessToken,
 	use: [apiPlugin],
 	apiOptions: { region },
+	enableFallbackComponent: true,
 	components: {
 		page: HomePage,
 		component1: Component1,
+		teaser: Teaser,
+		grid: Grid,
+		feature: Feature,
 	},
 });
 

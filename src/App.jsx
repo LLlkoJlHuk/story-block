@@ -31,14 +31,14 @@ function getStoryVersion(search) {
 
 function getSlugCandidates(pathname) {
 	const routeSlug = normalizeSlug(pathname);
-	const homeSlug = import.meta.env.VITE_STORYBLOK_HOME_SLUG;
+	const homeSlug = import.meta.env.VITE_STORYBLOK_HOME_SLUG || 'test-page';
+	const fallbackSlug = import.meta.env.VITE_STORYBLOK_FALLBACK_SLUG;
 
-	return [
-		routeSlug,
-		homeSlug,
-		'home',
-		'test-page',
-	].filter(Boolean);
+	if (!routeSlug) {
+		return [...new Set([homeSlug, fallbackSlug].filter(Boolean))];
+	}
+
+	return [...new Set([routeSlug, fallbackSlug, homeSlug].filter(Boolean))];
 }
 
 function App() {
@@ -59,16 +59,25 @@ function App() {
 			const storyblokApi = getStoryblokApi();
 			let loadedStory = null;
 			let lastError = null;
+			const versionCandidates = version === 'published'
+				? ['published', 'draft']
+				: [version];
 
 			for (const slugCandidate of slugCandidates) {
-				try {
-					const endpoint = `cdn/stories/${encodeURI(slugCandidate)}`;
-					const { data } = await storyblokApi.get(endpoint, { version });
-					loadedStory = data.story;
-					break;
-				} catch (fetchError) {
-					lastError = fetchError;
+				for (const versionCandidate of versionCandidates) {
+					try {
+						const endpoint = `cdn/stories/${encodeURI(slugCandidate)}`;
+						const { data } = await storyblokApi.get(endpoint, {
+							version: versionCandidate,
+						});
+						loadedStory = data.story;
+						break;
+					} catch (fetchError) {
+						lastError = fetchError;
+					}
 				}
+
+				if (loadedStory) break;
 			}
 
 			if (cancelled) {
